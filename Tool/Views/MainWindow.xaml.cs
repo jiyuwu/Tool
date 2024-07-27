@@ -1,4 +1,5 @@
-﻿using Prism.Regions;
+﻿using Common;
+using Prism.Regions;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -143,9 +144,17 @@ namespace Tool.Views
             {
                 string txt = txt_input.Text;
                 string s = txt_s.Text;
-                string n = txt_n.Text;
-                string get = txt.Replace(s, n);
-                txt_output.Text = get;
+                if (string.IsNullOrWhiteSpace(s))
+                {
+                    HtmlToText htmlToText = new HtmlToText();
+                    txt_output.Text = htmlToText.Convert(s);
+                }
+                else
+                {
+                    string n = txt_n.Text;
+                    string get = txt.Replace(s, n);
+                    txt_output.Text = get;
+                }
             }
             catch (Exception) { }
         }

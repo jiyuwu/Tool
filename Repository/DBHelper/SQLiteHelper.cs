@@ -15,7 +15,7 @@ namespace Repository.DBHelper
     public class SQLiteHelper
     {
         private static string connectionString = string.Empty;
-        private static string dbname = "mydatabase.db";
+        private static string dbname = "tool.db";
 
         public SQLiteHelper()
         {

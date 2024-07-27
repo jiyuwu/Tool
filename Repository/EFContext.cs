@@ -23,7 +23,7 @@ namespace repository
         }
         private void EnsureDatabaseCreated()
         {
-            string dbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mydatabase.db");
+            string dbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tool.db");
 
             if (!File.Exists(dbFilePath))
             {
