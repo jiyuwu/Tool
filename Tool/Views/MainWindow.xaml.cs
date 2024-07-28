@@ -147,7 +147,7 @@ namespace Tool.Views
                 if (string.IsNullOrWhiteSpace(s))
                 {
                     HtmlToText htmlToText = new HtmlToText();
-                    txt_output.Text = htmlToText.Convert(s);
+                    txt_output.Text = htmlToText.Convert(txt);
                 }
                 else
                 {
