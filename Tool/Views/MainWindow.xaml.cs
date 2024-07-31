@@ -1,4 +1,5 @@
 ﻿using Common;
+using Prism.Events;
 using Prism.Regions;
 using System;
 using System.Diagnostics;
@@ -6,6 +7,7 @@ using System.Threading;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using Tool.Util;
 using Tool.ViewModels;
 using Tool.ViewModels.Area;
 using Tool.Views.Area;
@@ -21,12 +23,14 @@ namespace Tool.Views
         private System.Timers.Timer timer;
         private IRegionManager _regionManager;
         private MainViewModel _viewModel;
-        public MainWindow(IRegionManager regionManager)
+        private readonly IEventAggregator _eventAggregator;
+        public MainWindow(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             InitializeComponent();
             _regionManager = regionManager;
             DataContext = new MainViewModel();
             this.Loaded += MainWindow_Loaded;
+            _eventAggregator = eventAggregator;
             //this.Unloaded += DialogView_Unloaded;
             #region 初始化位置
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -61,6 +65,7 @@ namespace Tool.Views
         private void EnglishButton_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.ChangeLanguage("English");
+            _eventAggregator.GetEvent<LanguageChangedEvent>().Publish("English");
         }
 
         private void ChineseButton_Click(object sender, RoutedEventArgs e)

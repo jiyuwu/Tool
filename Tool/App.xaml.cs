@@ -1,5 +1,7 @@
-﻿using IService;
+﻿using Common;
+using IService;
 using Microsoft.Extensions.DependencyInjection;
+using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -26,8 +28,9 @@ namespace Tool
             SQLiteHelper.CreateDB();
             SQLiteHelper.CreateTable();
             // 创建主窗体的实例
-            MainWindow mainWindow = new MainWindow(Container.Resolve<IRegionManager>());
-            return mainWindow;
+            //MainWindow mainWindow = new MainWindow(Container.Resolve<IRegionManager>());
+            //return mainWindow;
+            return Container.Resolve<MainWindow>();
         }
         protected override void RegisterTypes(IContainerRegistry registry)
         {
@@ -46,7 +49,7 @@ namespace Tool
 
             // 构建 DI 容器并保存实例到 App.ServiceProvider
             ServiceProvider = services.BuildServiceProvider();
-
+            registry.RegisterSingleton<IEventAggregator, EventAggregator>();
             //向容器中注入一个导航
             registry.RegisterForNavigation<Views.Area.AreaUserA>("AreaUserA");
             registry.RegisterForNavigation<Views.Area.AreaUserB>("AreaUserB");
@@ -60,6 +63,8 @@ namespace Tool
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            // 启动应用时，设置初始语言
+            LanguageResources.CurrentLanguage = "English";
         }
     }
 }

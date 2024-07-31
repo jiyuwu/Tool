@@ -271,6 +271,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Util\LanguageChangedEvent.cs" />
     <Compile Include="ViewModels\Area\AreaMainViewModel.cs" />
     <Compile Include="ViewModels\Area\AreaUserAViewModel.cs" />
     <Compile Include="ViewModels\Area\AreaUserBViewModel.cs" />

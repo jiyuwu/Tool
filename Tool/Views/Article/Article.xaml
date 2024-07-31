@@ -19,8 +19,9 @@
         <Border Grid.Column="2">
             <Grid>
                 <StackPanel>
-                <TextBlock Text="{Binding Name}"  FontSize="30"/>
-                <Button Content="按钮" Command="{Binding ClickCommand}"  CommandParameter="123" ></Button>
+                    <TextBlock Text="{Binding Name}"  FontSize="30"/>
+                    <TextBlock Text="{Binding Localization[HelloWorld]}"  FontSize="30"/>
+                    <Button Content="按钮" Command="{Binding ClickCommand}"  CommandParameter="123" ></Button>
                 </StackPanel>
             </Grid>
         </Border>
