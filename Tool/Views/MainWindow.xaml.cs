@@ -6,6 +6,7 @@ using System.Threading;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using Tool.ViewModels;
 using Tool.ViewModels.Area;
 using Tool.Views.Area;
 using Tool.Views.SqlTool;
@@ -19,10 +20,13 @@ namespace Tool.Views
     {
         private System.Timers.Timer timer;
         private IRegionManager _regionManager;
+        private MainViewModel _viewModel;
         public MainWindow(IRegionManager regionManager)
         {
             InitializeComponent();
             _regionManager = regionManager;
+            DataContext = new MainViewModel();
+            this.Loaded += MainWindow_Loaded;
             //this.Unloaded += DialogView_Unloaded;
             #region 初始化位置
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -50,7 +54,19 @@ namespace Tool.Views
             menu_area.Click += Menu_area_Click;
             #endregion
         }
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            _viewModel = (MainViewModel)DataContext;
+        }
+        private void EnglishButton_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.ChangeLanguage("English");
+        }
 
+        private void ChineseButton_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.ChangeLanguage("Chinese");
+        }
         private void Menu_cmd_Click(object sender, RoutedEventArgs e)
         {
             CMDTool.CMDTool cMDTool = new CMDTool.CMDTool();

@@ -174,6 +174,12 @@
                             <WrapPanel  Margin="10" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Button Name="btn_change" Height="30"  Width="100">转换</Button>
                             </WrapPanel>
+                            <TextBlock Text="{Binding Localization[HelloWorld]}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
+                            <WrapPanel>
+                                <Button Content="中文" Click="ChineseButton_Click" Margin="5"/>
+                                <Button Content="English" Click="EnglishButton_Click" Margin="5"/>
+                            </WrapPanel>
+                            
                         </StackPanel>
 
                     </Grid>
